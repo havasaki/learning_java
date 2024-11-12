@@ -2,13 +2,13 @@ package lab10;
 
 
 
- class Student {
+ class Student1 {
     private String firstName;
     private String lastName;
     private String specialty;
     private int course;
     private String group;
-    public Student(String firstName, String lastName, String specialty, int course, String group) {
+    public Student1(String firstName, String lastName, String specialty, int course, String group) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.specialty = specialty;
@@ -67,7 +67,7 @@ package lab10;
 
 public class task1 {
     public static void main(String[] args) {
-        Student student = new Student("Ivan", "Ivanov", "Computer Science", 2, "CS-21");
+        Student1 student = new Student1("Ivan", "Ivanov", "Computer Science", 2, "CS-21");
 
 
         System.out.println(student);
