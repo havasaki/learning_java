@@ -20,14 +20,13 @@ public class task2 {
         LocalDateTime userDateTime;
         userDateTime = LocalDateTime.parse(userInput, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
 
-            // Сравнение дат
-            if (userDateTime.isBefore(currentDateTime)) {
-                System.out.println("Введенная дата и время находятся в прошлом.");
-            } else if (userDateTime.isAfter(currentDateTime)) {
-                System.out.println("Введенная дата и время находятся в будущем.");
-            } else {
-                System.out.println("Введенная дата и время совпадают с текущими.");
-            }
+        if (userDateTime.toLocalDate().isEqual(currentDateTime.toLocalDate())) {
+            System.out.println("Введенная дата совпадает с текущей.");
+        } else if (userDateTime.isBefore(currentDateTime)) {
+            System.out.println("Введенная дата и время находятся в прошлом.");
+        } else {
+            System.out.println("Введенная дата и время находятся в будущем.");
+        }
         scanner.close();
     }
 }

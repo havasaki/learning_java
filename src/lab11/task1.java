@@ -1,40 +1,22 @@
 package lab11;
-
-import java.util.Calendar;
 import java.util.Date;
-import java.util.Scanner;
+import java.text.SimpleDateFormat;
 
 public class task1 {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите год: ");
-        int year = scanner.nextInt();
+    public static void main(String[] args) throws InterruptedException {
+        String developerLastName = "Иванов";
 
-        System.out.print("Введите месяц (1-12): ");
-        int month = scanner.nextInt() - 1; // Месяцы в Calendar начинаются с 0
+        Date dateReceived = new Date(); // Получаем текущее время
+        System.out.println("Фамилия разработчика: " + developerLastName);
 
-        System.out.print("Введите день: ");
-        int day = scanner.nextInt();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        System.out.println("Дата и время получения задания: " + dateFormat.format(dateReceived));
 
-        // Ввод данных для времени
-        System.out.print("Введите часы: ");
-        int hour = scanner.nextInt();
+        Thread.sleep(3000);
 
-        System.out.print("Введите минуты: ");
-        int minute = scanner.nextInt();
-
-        // Создание объекта Date
-        Date date = new Date(year - 1900, month, day, hour, minute);
-
-        // Создание объекта Calendar
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(year, month, day, hour, minute);
-
-        // Вывод объектов
-        System.out.println("Дата (объект Date): " + date);
-        System.out.println("Дата (объект Calendar): " + calendar.getTime());
-
-        scanner.close();
+        // Дата и время сдачи задания
+        Date dateSubmitted = new Date(); // Получаем текущее время снова
+        System.out.println("Дата и время сдачи задания: " + dateFormat.format(dateSubmitted));
     }
 }
