@@ -1,32 +1,34 @@
 package lab11;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 public class task2 {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false); // Не разрешать несуществующие даты
 
-        // Получаем текущую дату и время
-        LocalDateTime currentDateTime = LocalDateTime.now();
-        System.out.println("Текущие дата и время: " + currentDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm")));
+        Date currentDate = new Date();
+        System.out.println("Текущая дата: " + dateFormat.format(currentDate));
 
-        // Ввод даты и времени от пользователя
-        System.out.println("Введите дату и время в формате 'yyyy-MM-dd HH:mm':");
+        System.out.print("Введите дату в формате yyyy-MM-dd: ");
         String userInput = scanner.nextLine();
 
+        try {
+            Date userDate = dateFormat.parse(userInput);
 
-        LocalDateTime userDateTime;
-        userDateTime = LocalDateTime.parse(userInput, DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"));
-
-        if (userDateTime.toLocalDate().isEqual(currentDateTime.toLocalDate())) {
-            System.out.println("Введенная дата совпадает с текущей.");
-        } else if (userDateTime.isBefore(currentDateTime)) {
-            System.out.println("Введенная дата и время находятся в прошлом.");
-        } else {
-            System.out.println("Введенная дата и время находятся в будущем.");
+            if (userDate.equals(currentDate)) {
+                System.out.println("Введенная дата совпадает с текущей датой.");
+            } else if (userDate.before(currentDate)) {
+                System.out.println("Введенная дата раньше текущей даты.");
+            } else {
+                System.out.println("Введенная дата позже текущей даты.");
+            }
+        } catch (ParseException e) {
+            System.out.println("Неверный формат даты. Вы ввели несуществующую дату или не использовали формат yyyy-MM-dd.");
         }
-        scanner.close();
     }
 }
